@@ -11,31 +11,42 @@
 </head>
 <body>
   <section class="login-screen" id="login">
-    <div class="login-terminal">
-      <pre class="ascii">
-   _____ _            _      _    _ _
-  |  __ (_)          | |    | |  | (_)
-  | |__) | _ __   ___| | __ | |__| |_ _ __ ___
-  |  ___/ | '_ \ / __| |/ / |  __  | | '__/ _ \
-  | |   | | | | | (__|   <  | |  | | | | |  __/
-  |_|   |_|_| |_|\___|_|\_\ |_|  |_|_|_|  \___|
-      </pre>
-      <p>Welcome to Node-7 Terminal Interface (kernel 6.4.2-hardened).</p>
-      <p>Please authenticate to continue.</p>
-      <form id="login-form">
-        <div class="terminal-row">
-          <label for="user">login:</label>
-          <input class="terminal-input" id="user" autocomplete="off" placeholder="operator" required />
+    <div class="login-topbar">
+      <div class="top-left">
+        <span class="brand-pill">blackwire</span>
+        <span class="session-pill">en_IN.utf8</span>
+      </div>
+      <div class="top-right">
+        <span class="status-pill">Secure mode</span>
+        <span id="login-date">28 Feb, 18:21</span>
+        <span class="dot">●</span>
+      </div>
+    </div>
+
+    <form class="login-card" id="login-form">
+      <div class="login-card-header">
+        <div class="kali-orb">
+          <span class="kali-mark"></span>
         </div>
-        <div class="terminal-row">
-          <label for="pass">password:</label>
-          <input class="terminal-input" id="pass" type="password" autocomplete="off" placeholder="••••••" required />
+        <div class="login-fields">
+          <label for="user">Operator ID</label>
+          <input class="login-input" id="user" autocomplete="off" placeholder="cube" required />
+          <label for="pass">Passphrase</label>
+          <input class="login-input" id="pass" type="password" autocomplete="off" placeholder="Enter your password" required />
         </div>
-        <div class="login-actions">
-          <button class="login-button" type="submit">Authenticate</button>
-          <span class="login-status" id="login-status">Awaiting credentials...</span>
-        </div>
-      </form>
+      </div>
+      <div class="login-card-footer">
+        <button class="login-ghost-btn" type="button">Cancel</button>
+        <button class="login-button" type="submit">Log In</button>
+      </div>
+      <div class="login-status" id="login-status">Awaiting credentials...</div>
+    </form>
+
+    <div class="login-footer">
+      <div class="logo-lockup">
+        <span class="logo-box">KALI</span>
+        <span class="logo-sub">by offensive security</span>
+      </div>
     </div>
   </section>
 
@@ -57,6 +68,9 @@
         <button>Credential Vault</button>
         <button>Payload Sandbox</button>
         <button>Shadow Logs</button>
+        <button>Quantum Relay</button>
+        <button>Forge Console</button>
+        <button>Synapse Grid</button>
       </div>
       <div class="stats">
         <h4>Live Metrics</h4>
@@ -86,9 +100,63 @@
         </div>
         <div class="status-pill">Decoy mode engaged</div>
       </div>
+      <div class="hud-strip">
+        <div class="hud-item">
+          <span class="hud-label">Ops lattice</span>
+          <strong>Phantom grid</strong>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Quantum seal</span>
+          <strong>Enabled</strong>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Threat posture</span>
+          <strong>Elevated</strong>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Signal noise</span>
+          <strong>12%</strong>
+        </div>
+      </div>
 
       <div class="workspace">
         <div class="workspace-main">
+          <div class="mesh-visual">
+            <div class="mesh-header">
+              <div>
+                <h4>Active Mesh Link</h4>
+                <p class="mesh-status" id="mesh-status">Connected · UK gateway</p>
+              </div>
+              <div class="mesh-pill">Adaptive mesh</div>
+            </div>
+            <div class="mesh-body">
+              <div class="mesh-map" aria-hidden="true">
+                <span class="mesh-node node-1"></span>
+                <span class="mesh-node node-2"></span>
+                <span class="mesh-node node-3"></span>
+                <span class="mesh-node node-4"></span>
+                <span class="mesh-node node-5"></span>
+              </div>
+              <div class="mesh-info">
+                <div class="mesh-row">
+                  <span>Current IP</span>
+                  <strong id="mesh-ip">185.42.17.91</strong>
+                </div>
+                <div class="mesh-row">
+                  <span>Location</span>
+                  <strong id="mesh-location">London, UK</strong>
+                </div>
+                <div class="mesh-row">
+                  <span>Latency</span>
+                  <strong id="mesh-latency">24 ms</strong>
+                </div>
+                <div class="mesh-row">
+                  <span>Mesh integrity</span>
+                  <strong id="mesh-integrity">99.2%</strong>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="grid" id="tool-grid"></div>
 
           <div class="feed">
@@ -150,6 +218,25 @@
             <div class="status-row compact">
               <span>Exit node</span>
               <strong id="exit-node">NL-42</strong>
+            </div>
+          </div>
+          <div class="side-card">
+            <h4>Mesh Options</h4>
+            <div class="option-row">
+              <span>Auto relay swap</span>
+              <strong>Enabled</strong>
+            </div>
+            <div class="option-row">
+              <span>Quantum jitter</span>
+              <strong>Adaptive</strong>
+            </div>
+            <div class="option-row">
+              <span>Packet cloaking</span>
+              <strong>72%</strong>
+            </div>
+            <div class="option-row">
+              <span>DNS ghosting</span>
+              <strong>Active</strong>
             </div>
           </div>
         </aside>
