@@ -23,6 +23,11 @@ const sysLoad = document.getElementById('sys-load');
 const loadBar = document.getElementById('load-bar');
 const tempReadout = document.getElementById('temp-readout');
 const exitNode = document.getElementById('exit-node');
+const meshStatus = document.getElementById('mesh-status');
+const meshIp = document.getElementById('mesh-ip');
+const meshLocation = document.getElementById('mesh-location');
+const meshLatency = document.getElementById('mesh-latency');
+const meshIntegrity = document.getElementById('mesh-integrity');
 
 const tools = [
   { name: 'Social Media Brute-Force', desc: 'Instagram, Facebook, TikTok credential spray.', type: 'bruteforce' },
@@ -684,6 +689,30 @@ setInterval(() => {
 
 const envProfiles = ['Ubuntu 22.04 LTS', 'Kali 2024.1', 'Debian 12', 'Arch 6.7.4'];
 const exitNodes = ['NL-42', 'DE-19', 'SG-07', 'US-88', 'SE-31'];
+const meshNodes = [
+  { ip: '185.42.17.91', location: 'London, UK' },
+  { ip: '37.120.187.64', location: 'Manchester, UK' },
+  { ip: '91.219.212.118', location: 'Birmingham, UK' },
+  { ip: '5.62.42.230', location: 'Leeds, UK' },
+  { ip: '83.170.92.44', location: 'Edinburgh, UK' }
+];
+
+let meshIndex = 0;
+
+function updateMeshStatus() {
+  const node = meshNodes[meshIndex % meshNodes.length];
+  const latency = Math.floor(Math.random() * 22) + 14;
+  const integrity = (Math.random() * 1.4 + 98.4).toFixed(1);
+  if (meshIp) meshIp.textContent = node.ip;
+  if (meshLocation) meshLocation.textContent = node.location;
+  if (meshLatency) meshLatency.textContent = `${latency} ms`;
+  if (meshIntegrity) meshIntegrity.textContent = `${integrity}%`;
+  if (meshStatus) meshStatus.textContent = `Connected · ${node.location}`;
+  meshIndex += 1;
+}
+
+updateMeshStatus();
+setInterval(updateMeshStatus, 6500);
 
 setInterval(() => {
   if (Math.random() > 0.75) {

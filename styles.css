@@ -506,12 +506,179 @@ body {
   gap: 24px;
 }
 
+.mesh-visual {
+  background: rgba(9, 14, 24, 0.65);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(66, 165, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  padding: 18px 20px;
+  backdrop-filter: blur(6px);
+}
+
+.mesh-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.mesh-header h4 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+.mesh-status {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.mesh-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  border: 1px solid rgba(53, 242, 177, 0.35);
+  color: var(--accent);
+  background: rgba(53, 242, 177, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mesh-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 20px;
+  align-items: center;
+}
+
+.mesh-map {
+  position: relative;
+  min-height: 150px;
+  border-radius: 16px;
+  background: radial-gradient(circle at top, rgba(74, 180, 255, 0.2), rgba(6, 10, 15, 0.9));
+  border: 1px solid rgba(66, 165, 255, 0.2);
+  overflow: hidden;
+}
+
+.mesh-map::before,
+.mesh-map::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 1px dashed rgba(66, 165, 255, 0.4);
+  animation: meshPulse 4s ease infinite;
+}
+
+.mesh-map::after {
+  inset: 24%;
+  animation-delay: 1.2s;
+}
+
+.mesh-node {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(53, 242, 177, 0.8);
+  animation: nodeBlink 2.8s ease infinite;
+}
+
+.mesh-node.node-1 {
+  top: 22%;
+  left: 20%;
+}
+
+.mesh-node.node-2 {
+  top: 60%;
+  left: 38%;
+  animation-delay: 0.5s;
+}
+
+.mesh-node.node-3 {
+  top: 30%;
+  right: 20%;
+  animation-delay: 1s;
+}
+
+.mesh-node.node-4 {
+  bottom: 18%;
+  right: 30%;
+  animation-delay: 1.4s;
+}
+
+.mesh-node.node-5 {
+  top: 50%;
+  left: 62%;
+  animation-delay: 2s;
+}
+
+.mesh-info {
+  display: grid;
+  gap: 10px;
+}
+
+.mesh-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(10, 18, 30, 0.6);
+  border: 1px solid rgba(66, 165, 255, 0.14);
+}
+
+.mesh-row strong {
+  color: var(--accent-2);
+}
+
+@keyframes meshPulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes nodeBlink {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 .side-panel {
   display: flex;
   flex-direction: column;
   gap: 16px;
   position: sticky;
   top: 24px;
+}
+
+.option-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.option-row:last-child {
+  border-bottom: 0;
 }
 
 .side-card {

@@ -118,6 +118,42 @@
 
       <div class="workspace">
         <div class="workspace-main">
+          <div class="mesh-visual">
+            <div class="mesh-header">
+              <div>
+                <h4>Active Mesh Link</h4>
+                <p class="mesh-status" id="mesh-status">Connected · UK gateway</p>
+              </div>
+              <div class="mesh-pill">Adaptive mesh</div>
+            </div>
+            <div class="mesh-body">
+              <div class="mesh-map" aria-hidden="true">
+                <span class="mesh-node node-1"></span>
+                <span class="mesh-node node-2"></span>
+                <span class="mesh-node node-3"></span>
+                <span class="mesh-node node-4"></span>
+                <span class="mesh-node node-5"></span>
+              </div>
+              <div class="mesh-info">
+                <div class="mesh-row">
+                  <span>Current IP</span>
+                  <strong id="mesh-ip">185.42.17.91</strong>
+                </div>
+                <div class="mesh-row">
+                  <span>Location</span>
+                  <strong id="mesh-location">London, UK</strong>
+                </div>
+                <div class="mesh-row">
+                  <span>Latency</span>
+                  <strong id="mesh-latency">24 ms</strong>
+                </div>
+                <div class="mesh-row">
+                  <span>Mesh integrity</span>
+                  <strong id="mesh-integrity">99.2%</strong>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="grid" id="tool-grid"></div>
 
           <div class="feed">
@@ -179,6 +215,25 @@
             <div class="status-row compact">
               <span>Exit node</span>
               <strong id="exit-node">NL-42</strong>
+            </div>
+          </div>
+          <div class="side-card">
+            <h4>Mesh Options</h4>
+            <div class="option-row">
+              <span>Auto relay swap</span>
+              <strong>Enabled</strong>
+            </div>
+            <div class="option-row">
+              <span>Quantum jitter</span>
+              <strong>Adaptive</strong>
+            </div>
+            <div class="option-row">
+              <span>Packet cloaking</span>
+              <strong>72%</strong>
+            </div>
+            <div class="option-row">
+              <span>DNS ghosting</span>
+              <strong>Active</strong>
             </div>
           </div>
         </aside>
