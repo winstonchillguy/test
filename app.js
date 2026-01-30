@@ -269,7 +269,7 @@ loginForm.addEventListener('submit', (event) => {
   loginStatus.style.color = '#7dffb1';
   playTypingSound();
   setTimeout(() => {
-    if (username === 'admin' && password === 'noonehere') {
+    if (username === 'cube' && password === 'noonehere') {
       loginStatus.textContent = 'Access granted. Launching toolkit...';
       loginStatus.style.color = '#7dffb1';
       setTimeout(() => {
