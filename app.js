@@ -4,6 +4,7 @@ const loginForm = document.getElementById('login-form');
 const loginStatus = document.getElementById('login-status');
 const loginScreen = document.getElementById('login');
 const dashboard = document.getElementById('dashboard');
+const loginDate = document.getElementById('login-date');
 const toolGrid = document.getElementById('tool-grid');
 const modal = document.getElementById('modal');
 const modalTitle = document.getElementById('modal-title');
@@ -243,6 +244,17 @@ function playTypingSound() {
     audioCtx.close();
   }, 60);
 }
+
+function updateLoginDate() {
+  if (!loginDate) return;
+  const now = new Date();
+  const datePart = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+  const timePart = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
+  loginDate.textContent = `${datePart}, ${timePart}`;
+}
+
+updateLoginDate();
+setInterval(updateLoginDate, 60000);
 
 loginForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -524,6 +536,7 @@ function openModal(tool) {
   moduleActive = false;
   moduleState = 'idle';
   currentProfile = { ...(moduleProfiles[tool.type] || moduleProfiles.scan), type: tool.type };
+  modal.classList.toggle('kali-mail', tool.type === 'email');
   modalTitle.textContent = tool.name;
   modalSubtitle.textContent = 'Module idle — configure parameters and engage.';
   modalSubtitle.style.color = '';
@@ -599,6 +612,7 @@ function closeIntervals() {
 
 function closeModalNow() {
   modal.classList.add('hidden');
+  modal.classList.remove('kali-mail');
   closeIntervals();
   moduleActive = false;
   moduleState = 'idle';
