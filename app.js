@@ -288,9 +288,24 @@ tools.forEach((tool) => {
   card.className = 'tool-card';
   card.dataset.type = tool.type;
   card.innerHTML = `<h3>${tool.name}</h3><p>${tool.desc}</p>`;
-  card.addEventListener('click', () => openModal(tool));
+  card.addEventListener('click', () => {
+    if (card.classList.contains('locked')) {
+      openLockedModal(tool.name);
+      return;
+    }
+    openModal(tool);
+  });
   toolGrid.appendChild(card);
 });
+
+const lockedCards = Array.from(toolGrid.querySelectorAll('.tool-card'));
+const lockedCount = Math.min(4, Math.ceil(lockedCards.length * 0.2));
+lockedCards
+  .sort(() => Math.random() - 0.5)
+  .slice(0, lockedCount)
+  .forEach((card) => {
+    card.classList.add('locked');
+  });
 
 let modalInterval;
 let statusInterval;
@@ -608,6 +623,24 @@ function openModal(tool) {
   terminalOutput.innerHTML = modalLogs.join('<br />');
 }
 
+function openLockedModal(toolName) {
+  closeModalNow();
+  modalTitle.textContent = `${toolName} Locked`;
+  modalSubtitle.textContent = 'Not enough computing power connected with cloud to perform this task.';
+  modalSubtitle.style.color = '#f0b45c';
+  modalForm.innerHTML = `
+    <div class="panel-banner">
+      <h4>Access restricted</h4>
+      <p>Link additional cloud compute nodes or downgrade the request queue.</p>
+    </div>
+  `;
+  statusGrid.innerHTML = '';
+  terminalOutput.innerHTML = 'REQUEST HALTED :: insufficient cloud compute credits.';
+  progressLabel.textContent = 'Attempts: 0';
+  progressPercent.textContent = '0%';
+  modal.classList.remove('hidden');
+}
+
 function closeIntervals() {
   clearInterval(modalInterval);
   clearInterval(statusInterval);
@@ -637,12 +670,29 @@ const navModuleMap = {
   'Signal Trace': { type: 'trace', desc: 'Route intelligence scanner.' },
   'Credential Vault': { type: 'password', desc: 'Secure credential analyzer.' },
   'Payload Sandbox': { type: 'network', desc: 'Traffic lab simulator.' },
-  'Shadow Logs': { type: 'monitor', desc: 'Event stream observatory.' }
+  'Shadow Logs': { type: 'monitor', desc: 'Event stream observatory.' },
+  'Quantum Relay': { type: 'network', desc: 'Quantum relay stabilization.' },
+  'Forge Console': { type: 'payload', desc: 'Payload forge controls.' },
+  'Synapse Grid': { type: 'monitor', desc: 'Signal lattice monitor.' }
 };
 
-document.querySelectorAll('.nav button').forEach((button) => {
+const navButtons = Array.from(document.querySelectorAll('.nav button'));
+const lockedNavCount = Math.min(2, Math.ceil(navButtons.length * 0.2));
+navButtons
+  .slice()
+  .sort(() => Math.random() - 0.5)
+  .slice(0, lockedNavCount)
+  .forEach((button) => {
+    button.classList.add('locked');
+  });
+
+navButtons.forEach((button) => {
   button.addEventListener('click', () => {
     const label = button.textContent.trim();
+    if (button.classList.contains('locked')) {
+      openLockedModal(label);
+      return;
+    }
     const mapped = navModuleMap[label] || { type: 'monitor', desc: 'Section interface simulation.' };
     openModal({
       name: label,
@@ -691,10 +741,20 @@ const envProfiles = ['Ubuntu 22.04 LTS', 'Kali 2024.1', 'Debian 12', 'Arch 6.7.4
 const exitNodes = ['NL-42', 'DE-19', 'SG-07', 'US-88', 'SE-31'];
 const meshNodes = [
   { ip: '185.42.17.91', location: 'London, UK' },
-  { ip: '37.120.187.64', location: 'Manchester, UK' },
-  { ip: '91.219.212.118', location: 'Birmingham, UK' },
-  { ip: '5.62.42.230', location: 'Leeds, UK' },
-  { ip: '83.170.92.44', location: 'Edinburgh, UK' }
+  { ip: '37.120.187.64', location: 'Frankfurt, Germany' },
+  { ip: '91.219.212.118', location: 'Paris, France' },
+  { ip: '5.62.42.230', location: 'Madrid, Spain' },
+  { ip: '83.170.92.44', location: 'Oslo, Norway' },
+  { ip: '103.21.244.91', location: 'Mumbai, India' },
+  { ip: '64.233.160.0', location: 'New York, USA' },
+  { ip: '45.33.32.156', location: 'Toronto, Canada' },
+  { ip: '139.59.93.12', location: 'Singapore' },
+  { ip: '52.64.42.112', location: 'Sydney, Australia' },
+  { ip: '154.72.47.12', location: 'Nairobi, Kenya' },
+  { ip: '181.214.198.9', location: 'São Paulo, Brazil' },
+  { ip: '102.219.176.4', location: 'Cape Town, South Africa' },
+  { ip: '186.2.163.19', location: 'Mexico City, Mexico' },
+  { ip: '46.36.203.142', location: 'Dubai, UAE' }
 ];
 
 let meshIndex = 0;
