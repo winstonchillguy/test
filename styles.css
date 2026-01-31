@@ -198,7 +198,10 @@ body {
 .login-status {
   font-size: 12px;
   opacity: 0.7;
-  padding: 0 20px 16px;
+  padding: 12px 20px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(6, 10, 16, 0.75);
+  text-align: left;
 }
 
 .login-footer {
