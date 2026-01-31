@@ -30,33 +30,33 @@ const meshLatency = document.getElementById('mesh-latency');
 const meshIntegrity = document.getElementById('mesh-integrity');
 
 const tools = [
-  { name: 'Social Media Brute-Force', desc: 'Instagram, Facebook, TikTok credential spray.', type: 'bruteforce' },
-  { name: 'Password Cracking Suite', desc: 'Adaptive hash cracking simulation.', type: 'password' },
-  { name: 'Email Hacker', desc: 'Mailbox infiltration workflow simulator.', type: 'email' },
-  { name: 'Vulnerability Scanner', desc: 'Website attack surface reconnaissance.', type: 'scan' },
+  { name: 'Social Media Access Audit', desc: 'Credential resilience simulation for social platforms.', type: 'bruteforce' },
+  { name: 'Password Resilience Suite', desc: 'Adaptive hash resilience simulation.', type: 'password' },
+  { name: 'Mailbox Integrity Drill', desc: 'Inbox security workflow simulator.', type: 'email' },
+  { name: 'Vulnerability Scanner', desc: 'Attack surface reconnaissance for authorized targets.', type: 'scan' },
   { name: 'IP Trace & Geolocation', desc: 'Geo-IP triangulation and routing analysis.', type: 'trace' },
-  { name: 'Email Phishing Simulator', desc: 'Payload templating and target funneling.', type: 'phish' },
-  { name: 'Packet Sniffer', desc: 'Deep packet inspection and TLS decay.', type: 'network' },
-  { name: 'Ransomware Deployment Suite', desc: 'Payload staging sandbox.', type: 'payload' },
-  { name: 'DDoS Launcher', desc: 'Traffic burst orchestration simulator.', type: 'network' },
-  { name: 'Crypto Wallet Cracker', desc: 'Mnemonic permutation analysis.', type: 'password' },
-  { name: 'SQL Injection Tester', desc: 'Database probe simulation.', type: 'scan' },
+  { name: 'Email Phishing Simulator', desc: 'Lure templating and response tracking drill.', type: 'phish' },
+  { name: 'Packet Sniffer', desc: 'Deep packet inspection and TLS health checks.', type: 'network' },
+  { name: 'Payload Delivery Lab', desc: 'Controlled delivery chain sandbox.', type: 'payload' },
+  { name: 'Traffic Burst Simulator', desc: 'Load orchestration for resilience testing.', type: 'network' },
+  { name: 'Crypto Wallet Audit', desc: 'Mnemonic permutation analysis for training.', type: 'password' },
+  { name: 'SQL Injection Tester', desc: 'Database probe simulation with safe mode.', type: 'scan' },
   { name: 'Zero-Day Monitor', desc: 'Threat intelligence ingestion.', type: 'monitor' },
   { name: 'Dark Web Indexer', desc: 'Onion routing map builder.', type: 'monitor' },
-  { name: 'Exploit Chain Builder', desc: 'Module compilation + chaining.', type: 'payload' },
-  { name: 'Rootkit Implant Viewer', desc: 'Kernel hook monitor.', type: 'monitor' },
-  { name: 'VPN Hijack Simulator', desc: 'Route poisoning planner.', type: 'network' },
+  { name: 'Exploit Chain Builder', desc: 'Module compilation + chaining in sandbox.', type: 'payload' },
+  { name: 'Rootkit Implant Viewer', desc: 'Kernel hook monitor (read-only).', type: 'monitor' },
+  { name: 'VPN Drift Simulator', desc: 'Route resiliency planner.', type: 'network' },
   { name: 'IoT Device Mapper', desc: 'Embedded device inventory.', type: 'scan' },
-  { name: 'RFID Cloner Lab', desc: 'Signal capture & replay.', type: 'payload' },
+  { name: 'RFID Signal Lab', desc: 'Capture & replay training workflow.', type: 'payload' },
   { name: 'Credential Leak Monitor', desc: 'Paste site watcher.', type: 'monitor' },
   { name: 'Biometric Sensor Lab', desc: 'Sensor bypass emulation.', type: 'payload' },
-  { name: 'Cloud Vault Breach', desc: 'Bucket misconfig audit.', type: 'scan' },
-  { name: 'Proxy Mesh Orchestrator', desc: 'Anonymity relay control.', type: 'network' },
+  { name: 'Cloud Vault Audit', desc: 'Bucket misconfiguration audit.', type: 'scan' },
+  { name: 'Proxy Mesh Orchestrator', desc: 'Relay health control.', type: 'network' },
   { name: 'Malware Sandbox', desc: 'Behavioral trace viewer.', type: 'payload' },
   { name: 'Threat Actor Radar', desc: 'Pattern recognition feed.', type: 'monitor' },
-  { name: 'Mobile SIM Tracker', desc: 'Baseband ping sweeps.', type: 'trace' },
+  { name: 'Mobile SIM Tracker', desc: 'Baseband signal sweeps for training.', type: 'trace' },
   { name: 'Satellite Uplink Probe', desc: 'Signal injection mock.', type: 'network' },
-  { name: 'Memory Dumper', desc: 'Volatile memory extraction.', type: 'password' }
+  { name: 'Memory Dumper', desc: 'Volatile memory extraction drill.', type: 'password' }
 ];
 
 const logTemplates = {
@@ -120,25 +120,25 @@ const logTemplates = {
 
 const moduleProfiles = {
   bruteforce: {
-    statusLines: ['Calibrating credential spray...', 'Rotating proxy ladders...', 'Masking fingerprint telemetry...'],
+    statusLines: ['Validating consent ledger...', 'Rotating proxy ladders...', 'Masking fingerprint telemetry...'],
     counterLabel: 'Attempts',
     statusCards: [
       { label: 'Throttle', value: 'Adaptive' },
       { label: 'Lockout risk', value: 'Low' },
-      { label: 'Relay mask', value: 'Active' }
+      { label: 'Policy scope', value: 'Verified' }
     ]
   },
   password: {
-    statusLines: ['Spinning GPU kernels...', 'Digesting rule chains...', 'Warming hash cache...'],
+    statusLines: ['Spinning GPU kernels...', 'Digesting rule chains...', 'Logging keyspace coverage...'],
     counterLabel: 'Hashes',
     statusCards: [
       { label: 'GPU lanes', value: '08' },
       { label: 'Keyspace', value: '14.8B' },
-      { label: 'Mask depth', value: 'High' }
+      { label: 'Audit mode', value: 'Enabled' }
     ]
   },
   email: {
-    statusLines: ['Negotiating mailbox access...', 'Injecting replay token...', 'Harvesting recovery vectors...'],
+    statusLines: ['Negotiating mailbox access...', 'Auditing recovery vectors...', 'Verifying tenant policy...'],
     counterLabel: 'Tokens',
     statusCards: [
       { label: 'Session', value: 'IMAP/SSL' },
@@ -147,12 +147,12 @@ const moduleProfiles = {
     ]
   },
   scan: {
-    statusLines: ['Enumerating endpoints...', 'Validating response headers...', 'Mapping attack surface...'],
+    statusLines: ['Enumerating endpoints...', 'Validating response headers...', 'Mapping approved surface...'],
     counterLabel: 'Findings',
     statusCards: [
       { label: 'Hosts scoped', value: '11' },
       { label: 'Criticals', value: '03' },
-      { label: 'Active checks', value: '58' }
+      { label: 'Scope', value: 'Approved' }
     ]
   },
   trace: {
@@ -165,20 +165,20 @@ const moduleProfiles = {
     ]
   },
   network: {
-    statusLines: ['Priming burst engine...', 'Linking bot clusters...', 'Balancing throughput...'],
+    statusLines: ['Priming burst engine...', 'Linking cluster nodes...', 'Balancing throughput...'],
     counterLabel: 'Bursts',
     statusCards: [
-      { label: 'Bot cluster', value: 'Hydra' },
+      { label: 'Cluster set', value: 'Hydra' },
       { label: 'Amplifier', value: 'Idle' },
       { label: 'Traffic cap', value: '83%' }
     ]
   },
   payload: {
-    statusLines: ['Packing payload chain...', 'Assembling beacons...', 'Syncing stealth profile...'],
+    statusLines: ['Packing payload chain...', 'Assembling beacons...', 'Syncing sandbox profile...'],
     counterLabel: 'Staged',
     statusCards: [
       { label: 'Delivery', value: 'Staged' },
-      { label: 'Persistence', value: 'Enabled' },
+      { label: 'Persistence', value: 'Disabled' },
       { label: 'Sandbox', value: 'Live' }
     ]
   },
@@ -321,8 +321,8 @@ let currentProfile = moduleProfiles.scan;
 
 const formPresets = {
   bruteforce: {
-    title: 'Brute Force Controls',
-    summary: ['Credential spray matrix', 'Proxy mesh rotation', 'Lockout avoidance'],
+    title: 'Access Audit Controls',
+    summary: ['Credential audit matrix', 'Proxy mesh rotation', 'Lockout avoidance'],
     fields: [
       { label: 'Target username / email / phone', type: 'text', placeholder: 'target@domain.com' },
       { label: 'Platform', type: 'select', options: ['Instagram', 'Facebook', 'TikTok', 'Snapchat', 'Twitter/X', 'LinkedIn'] },
@@ -333,7 +333,7 @@ const formPresets = {
     ]
   },
   password: {
-    title: 'Hash Crack Module',
+    title: 'Hash Resilience Module',
     summary: ['GPU pipeline status', 'Keyspace coverage', 'Rule chain optimizer'],
     fields: [
       { label: 'Hash input', type: 'text', placeholder: 'b109f3bbbc244eb82441917ed06d618b' },
@@ -345,8 +345,8 @@ const formPresets = {
     ]
   },
   email: {
-    title: 'Mailbox Breach Console',
-    summary: ['Session replay', 'Recovery intercept', 'Inbox siphon'],
+    title: 'Mailbox Integrity Console',
+    summary: ['Session replay', 'Recovery audit', 'Inbox integrity scan'],
     fields: [
       { label: 'Target email', type: 'text', placeholder: 'alias@provider.com' },
       { label: 'Provider', type: 'select', options: ['Gmail', 'Outlook', 'Proton', 'Yahoo', 'Custom IMAP', 'Zoho', 'Fastmail'] },
@@ -357,7 +357,7 @@ const formPresets = {
   },
   scan: {
     title: 'Scan Parameters',
-    summary: ['Surface map', 'Risk classifier', 'Exploit readiness'],
+    summary: ['Surface map', 'Risk classifier', 'Compliance readiness'],
     fields: [
       { label: 'Target URL / IP', type: 'text', placeholder: 'https://target.example' },
       { label: 'Scan depth', type: 'select', options: ['Light', 'Standard', 'Aggressive', 'Deep crawl'] },
@@ -377,7 +377,7 @@ const formPresets = {
   },
   network: {
     title: 'Network Orchestration',
-    summary: ['Burst cadence', 'Bot cluster load', 'Amplifier sync'],
+    summary: ['Burst cadence', 'Cluster load', 'Amplifier sync'],
     fields: [
       { label: 'Target range', type: 'text', placeholder: '10.0.0.0/24' },
       { label: 'Traffic pattern', type: 'select', options: ['Pulse', 'Adaptive wave', 'Randomized', 'Steady stream', 'Burst ripple'] },
@@ -387,8 +387,8 @@ const formPresets = {
     ]
   },
   payload: {
-    title: 'Payload Staging',
-    summary: ['Delivery chain', 'Stealth profile', 'Persistence toggle'],
+    title: 'Payload Staging Lab',
+    summary: ['Delivery chain', 'Sandbox profile', 'Control toggles'],
     fields: [
       { label: 'Target OS', type: 'select', options: ['Windows', 'Linux', 'macOS', 'Android', 'iOS'] },
       { label: 'Delivery method', type: 'select', options: ['Dropper', 'USB', 'Remote shell', 'Macro doc', 'Drive-by', 'Staged beacon'] },
@@ -437,7 +437,7 @@ function renderForm(tool) {
     <h4>${preset.title}</h4>
     <ul class="module-summary">${summaryItems}</ul>
     ${fieldsHtml}
-    <div class="helper-text">All inputs remain on-device for this interface.</div>
+    <div class="helper-text">All inputs remain on-device in this simulated console.</div>
     <div class="action-row">
       <button class="action-btn" type="button" data-action="engage">Engage Module</button>
       <button class="secondary-btn" type="button" data-action="pause">Pause</button>
