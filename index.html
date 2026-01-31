@@ -39,7 +39,7 @@
         <button class="login-ghost-btn" type="button">Cancel</button>
         <button class="login-button" type="submit">Log In</button>
       </div>
-      <div class="login-status" id="login-status">Awaiting credentials...</div>
+      <div class="login-status" id="login-status" aria-live="polite">Awaiting credentials... Authorized training environment only.</div>
     </form>
 
     <div class="login-footer">
@@ -51,7 +51,7 @@
   </section>
 
   <section class="dashboard hidden" id="dashboard">
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
       <div class="logo">BlackWire</div>
       <div class="status-bar">
         <span>Secure tunnel</span>
@@ -88,10 +88,12 @@
           <div class="status">System uptime: <span id="uptime">14:22:51</span></div>
         </div>
         <div class="tags">
+          <span class="pill secondary">Engagement ID: BW-4921</span>
           <span class="pill">Threat intel live</span>
           <span class="pill secondary">Audit trail: synced</span>
           <span class="pill secondary">Ops tier: Phantom</span>
         </div>
+        <button class="menu-toggle" type="button" id="menu-toggle" aria-controls="sidebar" aria-expanded="false">Menu</button>
       </div>
       <div class="header">
         <div>

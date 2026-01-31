@@ -28,6 +28,8 @@ const meshIp = document.getElementById('mesh-ip');
 const meshLocation = document.getElementById('mesh-location');
 const meshLatency = document.getElementById('mesh-latency');
 const meshIntegrity = document.getElementById('mesh-integrity');
+const menuToggle = document.getElementById('menu-toggle');
+const sidebar = document.getElementById('sidebar');
 
 const tools = [
   { name: 'Social Media Access Audit', desc: 'Credential resilience simulation for social platforms.', type: 'bruteforce' },
@@ -215,9 +217,13 @@ function randomIP() {
   return `${Math.floor(Math.random() * 223) + 1}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
 }
 
+function formatTimestamp(date = new Date()) {
+  return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+}
+
 function renderLogLine(templates = logTemplates.default) {
   const template = templates[Math.floor(Math.random() * templates.length)];
-  return template
+  const line = template
     .replace('{hex}', randomHex(8))
     .replace('{hex}', randomHex(6))
     .replace('{ip}', randomIP())
@@ -232,6 +238,7 @@ function renderLogLine(templates = logTemplates.default) {
     .replace('{seq}', Math.floor(Math.random() * 5000))
     .replace('{node}', Math.floor(Math.random() * 64))
     .replace('{entropy}', Math.floor(Math.random() * 99) + 1);
+  return `[${formatTimestamp()}] ${line}`;
 }
 
 function playTypingSound() {
@@ -326,8 +333,8 @@ const formPresets = {
     fields: [
       { label: 'Target username / email / phone', type: 'text', placeholder: 'target@domain.com' },
       { label: 'Platform', type: 'select', options: ['Instagram', 'Facebook', 'TikTok', 'Snapchat', 'Twitter/X', 'LinkedIn'] },
-      { label: 'Attack mode', type: 'select', options: ['Brute-force', 'Dictionary', 'Hybrid', 'Credential stuffing', 'Spray attack'] },
-      { label: 'Wordlist pack', type: 'select', options: ['core-lexicon.txt', 'shadowlist-2024.lst', 'breachdump-alpha.gz', 'operator-elite.dict', 'shadow-core-2025.lst', 'neural-passpack.v2', 'multi-lang-phrases.csv', 'kbd-walks-legacy.txt'] },
+      { label: 'Test mode', type: 'select', options: ['Brute-force', 'Dictionary', 'Hybrid', 'Credential stuffing', 'Spray test'] },
+      { label: 'Authorized corpus', type: 'select', options: ['core-lexicon.txt', 'shadowlist-2024.lst', 'breachdump-alpha.gz', 'operator-elite.dict', 'shadow-core-2025.lst', 'neural-passpack.v2', 'multi-lang-phrases.csv', 'kbd-walks-legacy.txt'] },
       { label: 'Thread count', type: 'range', min: 20, max: 420, value: 160 },
       { label: 'Proxy relay', type: 'toggle', value: true }
     ]
@@ -338,8 +345,8 @@ const formPresets = {
     fields: [
       { label: 'Hash input', type: 'text', placeholder: 'b109f3bbbc244eb82441917ed06d618b' },
       { label: 'Hash type', type: 'select', options: ['bcrypt', 'SHA-256', 'SHA-1', 'MD5', 'NTLM', 'Argon2', 'PBKDF2'] },
-      { label: 'Attack mode', type: 'select', options: ['Mask', 'Rule-based', 'Hybrid', 'Combinator', 'Prince', 'Token hybrid'] },
-      { label: 'Wordlist pack', type: 'select', options: ['rockyou-extended', 'corp-leaks.qz', 'mirage-core.lst', 'hashcat-favorites', 'wordnet-labs', 'open-source-phrases'] },
+      { label: 'Test mode', type: 'select', options: ['Mask', 'Rule-based', 'Hybrid', 'Combinator', 'Prince', 'Token hybrid'] },
+      { label: 'Authorized corpus', type: 'select', options: ['rockyou-extended', 'corp-leaks.qz', 'mirage-core.lst', 'hashcat-favorites', 'wordnet-labs', 'open-source-phrases'] },
       { label: 'GPU acceleration', type: 'toggle', value: true },
       { label: 'Speed governor', type: 'range', min: 1, max: 10, value: 7 }
     ]
@@ -350,7 +357,7 @@ const formPresets = {
     fields: [
       { label: 'Target email', type: 'text', placeholder: 'alias@provider.com' },
       { label: 'Provider', type: 'select', options: ['Gmail', 'Outlook', 'Proton', 'Yahoo', 'Custom IMAP', 'Zoho', 'Fastmail'] },
-      { label: 'Attack vector', type: 'select', options: ['Token replay', 'OAuth exploit', 'Session hijack', 'Password spray', 'Mailbox relay', 'Cookie clone'] },
+      { label: 'Assessment flow', type: 'select', options: ['Token replay', 'OAuth audit', 'Session review', 'Password spray', 'Mailbox relay', 'Cookie review'] },
       { label: 'Recovery intercept', type: 'toggle', value: true },
       { label: 'Proxy relay', type: 'toggle', value: true }
     ]
@@ -361,7 +368,7 @@ const formPresets = {
     fields: [
       { label: 'Target URL / IP', type: 'text', placeholder: 'https://target.example' },
       { label: 'Scan depth', type: 'select', options: ['Light', 'Standard', 'Aggressive', 'Deep crawl'] },
-      { label: 'Module pack', type: 'select', options: ['OWASP Top 10', 'CMS audit', 'API gateway', 'Legacy stack', 'Cloud edge', 'Auth surfaces'] },
+      { label: 'Policy pack', type: 'select', options: ['OWASP Top 10', 'CMS audit', 'API gateway', 'Legacy stack', 'Cloud edge', 'Auth surfaces'] },
       { label: 'Thread count', type: 'range', min: 5, max: 120, value: 30 }
     ]
   },
@@ -372,7 +379,7 @@ const formPresets = {
       { label: 'Target IP / handle', type: 'text', placeholder: '104.24.12.77' },
       { label: 'Lookup mode', type: 'select', options: ['Geo-IP', 'Traceroute', 'ASN fingerprint', 'Proxy chain', 'Passive DNS'] },
       { label: 'Cloak level', type: 'range', min: 1, max: 10, value: 6 },
-      { label: 'Relay obfuscation', type: 'toggle', value: true }
+      { label: 'Relay privacy', type: 'toggle', value: true }
     ]
   },
   network: {
@@ -381,7 +388,7 @@ const formPresets = {
     fields: [
       { label: 'Target range', type: 'text', placeholder: '10.0.0.0/24' },
       { label: 'Traffic pattern', type: 'select', options: ['Pulse', 'Adaptive wave', 'Randomized', 'Steady stream', 'Burst ripple'] },
-      { label: 'Bot cluster', type: 'select', options: ['Hydra', 'Cerberus', 'Specter', 'Aegis', 'Helios', 'Nyx'] },
+      { label: 'Cluster group', type: 'select', options: ['Hydra', 'Cerberus', 'Specter', 'Aegis', 'Helios', 'Nyx'] },
       { label: 'Amplification', type: 'toggle', value: false },
       { label: 'Burst size', type: 'range', min: 10, max: 300, value: 120 }
     ]
@@ -393,7 +400,7 @@ const formPresets = {
       { label: 'Target OS', type: 'select', options: ['Windows', 'Linux', 'macOS', 'Android', 'iOS'] },
       { label: 'Delivery method', type: 'select', options: ['Dropper', 'USB', 'Remote shell', 'Macro doc', 'Drive-by', 'Staged beacon'] },
       { label: 'Stealth profile', type: 'select', options: ['Low noise', 'Adaptive', 'Aggressive', 'Ghost'] },
-      { label: 'Persistence', type: 'toggle', value: true }
+      { label: 'Persistence (sandbox)', type: 'toggle', value: true }
     ]
   },
   monitor: {
@@ -438,7 +445,7 @@ function renderForm(tool) {
     <ul class="module-summary">${summaryItems}</ul>
     ${fieldsHtml}
     <div class="helper-text">All inputs remain on-device in this simulated console.</div>
-    <div class="action-row">
+    <div class="action-row sticky-actions">
       <button class="action-btn" type="button" data-action="engage">Engage Module</button>
       <button class="secondary-btn" type="button" data-action="pause">Pause</button>
       <button class="ghost-btn" type="button" data-action="reset">Reset</button>
@@ -701,6 +708,22 @@ navButtons.forEach((button) => {
     });
   });
 });
+
+if (menuToggle && sidebar && dashboard) {
+  menuToggle.addEventListener('click', () => {
+    const isOpen = sidebar.classList.toggle('is-open');
+    dashboard.classList.toggle('menu-open', isOpen);
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  dashboard.addEventListener('click', (event) => {
+    if (!sidebar.classList.contains('is-open')) return;
+    if (sidebar.contains(event.target) || menuToggle.contains(event.target)) return;
+    sidebar.classList.remove('is-open');
+    dashboard.classList.remove('menu-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  });
+}
 
 const feeds = [
   document.getElementById('intel-feed'),
